@@ -41,26 +41,26 @@ class App extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     let name = this.refs.name.value;
-    let role = this.refs.role.value;
+    let message = this.refs.message.value;
     let uid = this.refs.uid.value;
 
-    if (uid && name && role) {
+    if (uid && name && message) {
       const { developers } = this.state;
       const devIndex = developers.findIndex(data => {
         return data.uid === uid;
       });
       developers[devIndex].name = name;
-      developers[devIndex].role = role;
+      developers[devIndex].message = message;
       this.setState({ developers });
-    } else if (name && role) {
+    } else if (name && message) {
       const uid = new Date().getTime().toString();
       const { developers } = this.state;
-      developers.push({ uid, name, role });
+      developers.push({ uid, name, message });
       this.setState({ developers });
     }
 
     this.refs.name.value = "";
-    this.refs.role.value = "";
+    this.refs.message.value = "";
     this.refs.uid.value = "";
   };
 
@@ -75,7 +75,7 @@ class App extends React.Component {
   updateData = developer => {
     this.refs.uid.value = developer.uid;
     this.refs.name.value = developer.name;
-    this.refs.role.value = developer.role;
+    this.refs.message.value = developer.message;
   };
 
   render() {
@@ -98,7 +98,7 @@ class App extends React.Component {
                 >
                   <div className="card-body">
                     <h5 className="card-title">{developer.name}</h5>
-                    <p className="card-text">{developer.role}</p>
+                    <p className="card-text">{developer.message}</p>
                     <button
                       onClick={() => this.removeData(developer)}
                       className="btn btn-link"
@@ -135,7 +135,7 @@ class App extends React.Component {
                     <label>Message</label>
                     <input
                       type="text"
-                      ref="role"
+                      ref="message"
                       className="form-control"
                       placeholder="Message"
                     />
