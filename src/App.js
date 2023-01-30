@@ -137,7 +137,7 @@ class App extends React.Component {
                       type="text"
                       ref="role"
                       className="form-control"
-                      placeholder="Role"
+                      placeholder="Message"
                     />
                   </div>
                 </div>
